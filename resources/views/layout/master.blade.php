@@ -16,6 +16,12 @@
 <body>
     <div class="container">
     <h1><i class="fa fa-list"></i> Todo List ::</h1>
+        @if(auth()->check())
+        สวัสดี, {{auth()->user()->name}} | <a href="/logout">ออกจากระบบ</a>
+        @else
+        สวัสดี, บุคคลทั่วไป โปรด <a href="/login">เข้าสู่ระบบ</a>
+        @endif
+
        @yield('content')
         <hr>
         <p>&copy; 2017 Bundit Nuntates</p>
