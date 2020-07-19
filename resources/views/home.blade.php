@@ -19,34 +19,20 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($posts as $item)
             <tr>
-                <td>1</td>
-                <td>ซื้อสินค้าที่ Super Market</td>
-                <td>Shopping</td>
-                <td>Incomplete</td>
+                <td>{{$item->id}}</td>
+                <td>{{$item->detail}}</td>
+                <td>{{$item->category->name}}</td>
+                <td>@if($item->status == 1)สำเร็จ @else ไม่สำเร็จ @endif</td>
                 <td>
                     <a href="#" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> edit</a>
-                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> delete</a>
+                    <a href="/delete/{{$item->id}}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> delete</a>
                 </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>พาหมาไปวิ่งเล่น</td>
-                <td>Activity</td>
-                <td>Completed</td>
-                <td>
-                    <a href="#" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> edit</a>
-                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> delete</a>
-                </td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
-<ul class="pagination">
-    <li><a href="#">1</a></li>
-    <li class="active"><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-</ul>
+{{ $posts->links() }}
 @endsection

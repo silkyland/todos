@@ -7,17 +7,18 @@
         </h4>
     </div>
     <div class="panel-body">
-        <form action="/store" role="form">
+        <form action="/store" method="POST" role="form">
+            @csrf
             <div class="form-group">
                 <label for="inputName">กรอกชื่อรายการ :: </label>
-                <input type="text" name="name" placeholder="ชื่อรายการ" class="form-control">
+                <input type="text" name="detail" placeholder="ชื่อรายการ" required class="form-control">
             </div>
             <div class="form-group">
                 <label for="selectCategory">เลือกหมวดหมู่ :: </label>
                 <select name="category_id" id="" class="form-control">
-                    <option value="1">Shopping</option>
-                    <option value="2">Activity</option>
-                    <option value="3">Jobs</option>
+                    @foreach($categories as $item)
+                        <option value="{{$item->id}}">{{ $item->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <button type="submit" class="btn btn-success"> <i class="fa fa-save"></i> บันทึก</button>
